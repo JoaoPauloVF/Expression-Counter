@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Expression Counter</title>
+    <meta name="description" content="An online tool to count the amount of an expression in your text." />
+    <meta name="author" content="JoaoPauloVF" />
+    <meta name="keywords" content="expression, word, regular-expression, counter, online-tool" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!--flex-container: the application core-->
+    <div class="flex-container">
+      <!--item1: text input, count result, and highlighted matches-->
+      <div class="flex-item item1">
+        <label for="text" class="text-label">Place your text here</label>
+        <textarea id="text" class="text-input text"></textarea>
+
+        <p id="result">Fill the "Expression" field</p>
+        <p id="highlighted-matches" class="text">The text with all the matches will appear here.</p>
+      </div>
+
+      <!--item2: expression input, settings for searching, and run button-->
+      <div class="flex-item item2">
+        <label for="expression" class="text-label">Expression:</label>
+        <input 
+          id="expression"
+          class="text-input"
+          type="text" 
+          title="expression, word, or phrase to count in the text"
+        />
+        <!--search settings-->
+        <ul class="search-option-list">
+          <li class="search-option">
+            <input id="use-reg-exp" type="checkbox" />
+            <label for="use-reg-exp">Use regular expression</label>
+          </li>
+          <li class="search-option">
+            <input id="ignore-case" type="checkbox" />
+            <label for="ignore-case">Ignore case</label>
+          </li>
+        </ul>
+        <!--run button-->
+        <input id="run-button" type="button" value="Count expression" />
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

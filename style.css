@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+  /*outline: 1px solid #000;*/
+}
+
+/*Variables*/
+:root {
+  --width-part: 8.3%; /*100% / 12 = 8.3%*/
+
+  --text-padding: 0.5rem; /*Used in textarea and #highlighted-matches*/
+
+  --large-font-size: 2rem;
+  --medium-font-size: 1.4rem;
+  --small-font-size: 1.2rem;
+
+  --light-gray: #ccc;
+  --medium-gray: #aaa;
+  --dark-gray: #888;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*body child: .flex-container*/
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem;
+}
+
+/*.flex-container children: .item1 and .item2*/
+.flex-item { /*.flex-item: .item1, .item2*/
+  padding: 1rem;
+  border: 3px solid #000;
+  border-radius: 6px;
+  background-color: #fafafa;
+}
+
+.item1 {width: calc(var(--width-part) * 7);}
+
+.item2 {width: calc(var(--width-part) * 5);}
+
+/*
+  .flex-item children: 
+  
+  .text-label, .text-input, .search-option-list, #run-button, #result, and 
+  #highlighted-matches
+*/
+
+/*labels style*/
+.text-label { /*.text-label: label[for=text], label[for=expression]*/
+  display: block;
+  padding: 0.6rem;
+  margin-bottom: 0.3rem;
+  font-size: var(--medium-font-size);
+  cursor: pointer;
+}
+
+/*inputs style*/
+.text-input { /*.text-input: textarea, #expression*/
+  width: 100%;
+  font-size: var(--small-font-size);
+  font-family: monospace;
+}
+
+textarea {
+  height: 15rem;
+  padding: var(--text-padding);
+  min-height: 5rem;
+  resize: vertical;
+}
+
+#expression {padding: 0.5rem 0.8rem;}
+
+/*search settings style*/
+.search-option-list {
+  --border-style: 1px solid var(--medium-gray);
+  
+  list-style-type: none;
+  padding: 0;
+  border-top: var(--border-style);
+  border-bottom: var(--border-style);
+}
+
+.search-option { /*.search-option: .search-option-list > li*/
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  padding-left: 0;
+}
+
+/*.search-option children: .search-option input and .search-option label*/
+.search-option * {
+  cursor: pointer;
+}
+
+.search-option input {/*checkbox*/
+  margin-right: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+
+.search-option label {font-size: var(--small-font-size);}
+
+/*run button style*/
+#run-button {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0.8rem 1rem;
+  font-size: var(--medium-font-size);
+  font-weight: bold;
+  background-color: var(--light-gray);
+  cursor: pointer;
+}
+
+#run-button:hover {background-color: var(--medium-gray);}
+
+#run-button:active {background-color: var(--dark-gray);}
+
+/*count result style*/
+#result {
+  font-size: var(--large-font-size);
+  font-weight: bold;
+  background-color: var(--light-gray);
+  padding: 1rem 0.6rem;
+}
+
+/*style of the text with the highlighted matches*/
+#highlighted-matches {
+  padding: var(--text-padding);
+  font-size: var(--small-font-size);
+  white-space: pre-wrap;
+  line-height: normal;
+}
+
+.match {/*.match: #highlighted-matches > span*/
+  background-color: var(--light-gray);
+}
+
+.match::selection {
+  background-color: var(--dark-gray);
+  color: #fff;
+}
+
+/*Media queries*/
+
+/*Change the layout to vertical when the window width is smaller than 800px*/
+@media screen and (max-width: 800px) {
+  .flex-container {flex-direction: column;}
+
+  .flex-item {
+    width: 100%; 
+    margin-bottom: 0.5rem;
+  }
+
+  textarea {height: 5rem;}
+}
+
+/*Reduce result font size on narrow screens*/
+@media screen and (max-width: 600px) {
+  #result {font-size: calc(var(--large-font-size) * 0.75);}
+}
+
+@media screen and (max-width: 400px) {
+  #result {font-size: var(--medium-font-size);}
+}
